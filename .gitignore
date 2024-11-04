@@ -1,0 +1,45 @@
+# Ignorar todo
+*
+
+# Permitir .gitignore y otros archivos específicos
+<<<<<<< HEAD
+!.gitignore
+=======
+!.gitignore
+>>>>>>> 53d0a4c664ce4aab49f863f009b49c0981537bdb
+!/.github/*
+!Makefile
+
+# Permitir la carpeta libft y archivos específicos dentro de ella
+<<<<<<< HEAD
+#!/libft/
+#!/libft/Makefile
+#!/libft/libft.h
+#!/libft/ft_*.c
+=======
+!/libft/
+!/libft/Makefile
+!/libft/libft.h
+!/libft/ft_*.c
+>>>>>>> 53d0a4c664ce4aab49f863f009b49c0981537bdb
+
+# Permitir la carpeta src y archivos .c en ella
+!/src/
+!/src/*.c
+
+# Permitir la carpeta include y archivos .h en ella
+!/include/
+!/include/*.h
+
+# Permitir la carpeta bonus y archivos *_bonus.c en ella
+!/bonus/
+!/bonus/*_bonus.c
+
+# Permitir README.md
+!README.md
+
+# Permitir archivos específicos en doc
+!/doc/
+!/doc/*.pdf
+!/doc/*.txt
+!/doc/*.md
