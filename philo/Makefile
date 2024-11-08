@@ -1,9 +1,9 @@
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
-SRCS = philo.c philo_rutine.c check_end.c
+SRCS = philo.c philo_utils.c philo_rutine.c check_end.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
