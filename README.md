@@ -5,7 +5,7 @@
 
 ---
 
-## 🎯 Objetivo del proyecto  
+## 🎯 *Objetivo del proyecto*
 El objetivo principal fue crear una simulación multihilo que modele cómo los filósofos alternan entre pensar, comer y dormir, todo mientras compiten por recursos limitados: **los tenedores 🍴😨**. Este proyecto me ayudó a comprender profundamente conceptos como:
 - La sincronización entre procesos mediante mutexes.
 - La prevención de *deadlocks* y condiciones de carrera.
@@ -14,7 +14,19 @@ El objetivo principal fue crear una simulación multihilo que modele cómo los f
 
 ---
 
-## 🚀 Características principales  
+## ❓ *¿En qué consiste el problema de los filósofos cenando?*
+
+El problema de los filósofos cenando es un problema clásico en ciencias de la computación, que ilustra los desafíos de la sincronización y la gestión de recursos compartidos en un entorno concurrente.  
+
+Imagina a un grupo de filósofos sentados alrededor de una mesa circular. Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, cada filósofo necesita dos tenedores, pero solo hay un tenedor entre cada par de filósofos. Esto crea un problema:  
+1. Si todos los filósofos intentan tomar sus tenedores al mismo tiempo, puede ocurrir un *deadlock*, ya que nadie puede avanzar.  
+2. Si no hay una sincronización adecuada, algunos filósofos podrían quedarse hambrientos indefinidamente (condición de inanición).  
+
+La solución a este problema implica diseñar estrategias de sincronización para garantizar que los filósofos puedan comer sin bloqueos ni inanición, incluso en un entorno con recursos limitados.  
+
+---
+
+## 🚀 *Características principales*  
 1. **Multihilo:** Cada filósofo se ejecuta como un hilo independiente, funcionando de manera concurrente.
 2. **Sincronización segura:** Usé mutexes para garantizar accesos exclusivos a los recursos compartidos.
 3. **Prevención de bloqueos:** Implementé estrategias efectivas para evitar que los filósofos quedaran en espera infinita.
@@ -22,7 +34,7 @@ El objetivo principal fue crear una simulación multihilo que modele cómo los f
 
 ---
 
-## 📁 Estructura del proyecto  
+## 📁 *Estructura del proyecto*  
 ```bash
 Philosophers/
 ├── philo.c           # Lógica principal del programa
@@ -74,7 +86,7 @@ graph TD;
    make
    ```
 
-💻 Cómo usar  
+## 💻 *Cómo usar*  
 1. Instalación  
 Para probar la simulación, primero clona el repositorio y compila el proyecto:
 ```bash
@@ -103,7 +115,10 @@ Ejemplo:
 - [número_de_comidas] (opcional): Número de comidas necesarias para que cada filósofo termine su participación.
 
 
-✨ Conclusión  
+## ✨ *Conclusión*  
 Trabajar en este proyecto fue un verdadero desafío, pero también una experiencia enriquecedora. Philosophers no solo me permitió profundizar en temas avanzados como concurrencia y sincronización, sino que también me enseñó la importancia de escribir código limpio y estructurado para manejar sistemas complejos.
 
-Siéntete libre de probar la simulación, explorar el código y compartir tus pensamientos. ¡Espero que lo disfrutes tanto como yo disfruté desarrollándolo! 🚀🍴
+ /\_/\  
+( o.o )  ñam ñam
+ > ^ <
+
