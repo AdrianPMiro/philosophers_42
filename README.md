@@ -14,10 +14,10 @@ El objetivo principal fue crear una simulación multihilo que modele cómo los f
 ---
 
 ## 🚀 Características principales  
-- **Multihilo:** Cada filósofo se ejecuta como un hilo independiente, funcionando de manera concurrente.
-- **Sincronización segura:** Usé mutexes para garantizar accesos exclusivos a los recursos compartidos.
-- **Prevención de bloqueos:** Implementé estrategias efectivas para evitar que los filósofos quedaran en espera infinita.
-- **Finalización configurable:** El programa puede terminar cuando todos los filósofos han comido un número específico de veces (si se proporciona este parámetro).
+1. **Multihilo:** Cada filósofo se ejecuta como un hilo independiente, funcionando de manera concurrente.
+2. **Sincronización segura:** Usé mutexes para garantizar accesos exclusivos a los recursos compartidos.
+3. **Prevención de bloqueos:** Implementé estrategias efectivas para evitar que los filósofos quedaran en espera infinita.
+4. **Finalización configurable:** El programa puede terminar cuando todos los filósofos han comido un número específico de veces (si se proporciona este parámetro).
 
 ---
 
@@ -31,6 +31,46 @@ Philosophers/
 ├── Makefile          # Herramienta de compilación
 └── README.md         # Este documento
 ```
+## 📖 *Funcionamiento técnico*  
+Filosofía detrás del código  
+Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, necesita tomar dos tenedores, que están representados como mutexes.
+
+La simulación termina en dos casos:
+- Si un filósofo no logra comer antes de su tiempo límite, el filósofo muere y el programa finaliza.
+- Si todos los filósofos han comido el número especificado de veces (si se configuró).
+
+Sincronización  
+La clave para evitar problemas como deadlocks o condiciones de carrera fue sincronizar cuidadosamente los accesos a los tenedores usando mutexes. También me aseguré de implementar una lógica que prioriza la seguridad y la consistencia en la ejecución de cada hilo.
+
+##📊 *Diagrama del flujo*
+```mermaid
+graph TD;
+    Inicio[Inicio] --> Configuración[Configurar parámetros]
+    Configuración --> CrearHilos[Crear hilos para cada filósofo]
+    CrearHilos --> CicloDeVida[Ciclo de vida de los filósofos]
+    CicloDeVida --> Pensar[Pensar]
+    Pensar --> IntentarComer[Intentar tomar dos tenedores]
+    IntentarComer --> Comer[Comer]
+    Comer --> Dormir[Dormir]
+    Dormir --> Pensar
+    Comer --> ChequearMuerte[¿Murió algún filósofo? / ¿Terminaron de comer?]
+    ChequearMuerte -->|Sí| Fin[Terminar simulación]
+    ChequearMuerte -->|No| Pensar
+```
+
+## 🛠️ **Instrucciones de instalación**
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/AdrianPMiro/philosophers_42.git && cd philosophers_42
+   ```
+
+2. Compila el proyecto:
+
+   ```bash
+   make
+   ```
+
 💻 Cómo usar  
 1. Instalación  
 Para probar la simulación, primero clona el repositorio y compila el proyecto:
@@ -59,32 +99,6 @@ Ejemplo:
 - <tiempo_para_dormir>: Tiempo que un filósofo pasa durmiendo.
 - [número_de_comidas] (opcional): Número de comidas necesarias para que cada filósofo termine su participación.
 
-## 📖 *Funcionamiento técnico*  
-Filosofía detrás del código  
-Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, necesita tomar dos tenedores, que están representados como mutexes.
-
-La simulación termina en dos casos:
-- Si un filósofo no logra comer antes de su tiempo límite, el filósofo muere y el programa finaliza.
-- Si todos los filósofos han comido el número especificado de veces (si se configuró).
-
-Sincronización  
-La clave para evitar problemas como deadlocks o condiciones de carrera fue sincronizar cuidadosamente los accesos a los tenedores usando mutexes. También me aseguré de implementar una lógica que prioriza la seguridad y la consistencia en la ejecución de cada hilo.
-
-##📊 *Diagrama del flujo*
-```mermaid
-graph TD;
-    Inicio[Inicio] --> Configuración[Configurar parámetros]
-    Configuración --> CrearHilos[Crear hilos para cada filósofo]
-    CrearHilos --> CicloDeVida[Ciclo de vida de los filósofos]
-    CicloDeVida --> Pensar[Pensar]
-    Pensar --> IntentarComer[Intentar tomar dos tenedores]
-    IntentarComer --> Comer[Comer]
-    Comer --> Dormir[Dormir]
-    Dormir --> Pensar
-    Comer --> ChequearMuerte[¿Murió algún filósofo? / ¿Terminaron de comer?]
-    ChequearMuerte -->|Sí| Fin[Terminar simulación]
-    ChequearMuerte -->|No| Pensar
-```
 
 ✨ Conclusión  
 Trabajar en este proyecto fue un verdadero desafío, pero también una experiencia enriquecedora. Philosophers no solo me permitió profundizar en temas avanzados como concurrencia y sincronización, sino que también me enseñó la importancia de escribir código limpio y estructurado para manejar sistemas complejos.
