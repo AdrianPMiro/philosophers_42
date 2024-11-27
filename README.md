@@ -34,6 +34,33 @@ Philosophers/
 └── README.md         # Este documento
 ```
 
+### 📖 *Funcionamiento técnico*
+
+**Filosofía detrás del código**
+Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, necesita tomar dos tenedores, que están representados como mutexes. Si no logra comer antes de su tiempo límite, el filósofo muere y la simulación termina.
+
+**Sincronización**
+La clave para evitar problemas como deadlocks o condiciones de carrera fue sincronizar cuidadosamente los accesos a los tenedores usando mutexes. También me aseguré de implementar una lógica que prioriza la seguridad y la consistencia en la ejecución de cada hilo.
+
+
+### 📊 Diagrama del flujo
+
+```mermaid
+graph TD;
+    Inicio[Inicio] --> Configuración[Configurar parámetros]
+    Configuración --> CrearHilos[Crear hilos para cada filósofo]
+    CrearHilos --> CicloDeVida[Ciclo de vida de los filósofos]
+    CicloDeVida --> Pensar[Pensar]
+    Pensar --> IntentarComer[Intentar tomar dos tenedores]
+    IntentarComer --> Comer[Comer]
+    Comer --> Dormir[Dormir]
+    Dormir --> Pensar
+    Comer --> ChequearMuerte[¿Murió algún filósofo?]
+    ChequearMuerte -->|Sí| Fin[Terminar simulación]
+    ChequearMuerte -->|No| Pensar
+```
+
+
 ### 💻 Cómo usar
 
 1. **Instalación**
@@ -60,30 +87,6 @@ Parámetros:
 * `<tiempo_para_dormir>`: Tiempo que un filósofo pasa durmiendo.
 * `[número_de_comidas]` (opcional): Número de comidas necesarias para finalizar la simulación.
 
-### 📖 Funcionamiento técnico
-
-**Filosofía detrás del código**
-Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, necesita tomar dos tenedores, que están representados como mutexes. Si no logra comer antes de su tiempo límite, el filósofo muere y la simulación termina.
-
-**Sincronización**
-La clave para evitar problemas como deadlocks o condiciones de carrera fue sincronizar cuidadosamente los accesos a los tenedores usando mutexes. También me aseguré de implementar una lógica que prioriza la seguridad y la consistencia en la ejecución de cada hilo.
-
-### 📊 Diagrama del flujo
-
-```mermaid
-graph TD;
-    Inicio[Inicio] --> Configuración[Configurar parámetros]
-    Configuración --> CrearHilos[Crear hilos para cada filósofo]
-    CrearHilos --> CicloDeVida[Ciclo de vida de los filósofos]
-    CicloDeVida --> Pensar[Pensar]
-    Pensar --> IntentarComer[Intentar tomar dos tenedores]
-    IntentarComer --> Comer[Comer]
-    Comer --> Dormir[Dormir]
-    Dormir --> Pensar
-    Comer --> ChequearMuerte[¿Murió algún filósofo?]
-    ChequearMuerte -->|Sí| Fin[Terminar simulación]
-    ChequearMuerte -->|No| Pensar
-```
 
 ### ✨ Conclusión
 
