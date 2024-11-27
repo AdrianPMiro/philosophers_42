@@ -81,7 +81,7 @@ graph TD;
     IntentarComer --> Comer[Comer]
     Comer --> Dormir[Dormir]
     Dormir --> Pensar
-    Comer --> ChequearMuerte[¿Murió algún filósofo?]
+    Comer --> ChequearMuerte[¿Murió algún filósofo? / ¿Terminaron de comer?]
     ChequearMuerte -->|Sí| Fin[Terminar simulación]
     ChequearMuerte -->|No| Pensar
 ```
