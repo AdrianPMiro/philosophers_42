@@ -38,13 +38,21 @@ Para probar la simulación, primero clona el repositorio y compila el proyecto:
 Copiar código
 git clone https://github.com/tu_usuario/philosophers.git  
 cd philosophers  
-make  
+make
+```
+
 2. Ejecución  
 Lanza la simulación con los parámetros deseados:  
 ```bash
 Copiar código
 ./philo <número_de_filósofos> <tiempo_para_morir> <tiempo_para_comer> <tiempo_para_dormir> [número_de_comidas]
 Parámetros:
+```
+Ejemplo: 
+```bash
+./philo 5 800 200 200 5
+```
+
 - <número_de_filósofos>: Cantidad de filósofos en la mesa.
 - <tiempo_para_morir>: Tiempo máximo (en ms) antes de que un filósofo muera de hambre.
 - <tiempo_para_comer>: Tiempo que tarda un filósofo en comer.
@@ -76,6 +84,7 @@ graph TD;
     Comer --> ChequearMuerte[¿Murió algún filósofo?]
     ChequearMuerte -->|Sí| Fin[Terminar simulación]
     ChequearMuerte -->|No| Pensar
+```
 
 ✨ Conclusión  
 Trabajar en este proyecto fue un verdadero desafío, pero también una experiencia enriquecedora. Philosophers no solo me permitió profundizar en temas avanzados como concurrencia y sincronización, sino que también me enseñó la importancia de escribir código limpio y estructurado para manejar sistemas complejos.
