@@ -59,7 +59,7 @@ Ejemplo:
 - <tiempo_para_dormir>: Tiempo que un filósofo pasa durmiendo.
 - [número_de_comidas] (opcional): Número de comidas necesarias para que cada filósofo termine su participación.
 
-📖 Funcionamiento técnico  
+## 📖 *Funcionamiento técnico*  
 Filosofía detrás del código  
 Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, necesita tomar dos tenedores, que están representados como mutexes.
 
@@ -70,7 +70,7 @@ La simulación termina en dos casos:
 Sincronización  
 La clave para evitar problemas como deadlocks o condiciones de carrera fue sincronizar cuidadosamente los accesos a los tenedores usando mutexes. También me aseguré de implementar una lógica que prioriza la seguridad y la consistencia en la ejecución de cada hilo.
 
-📊 Diagrama del flujo
+##📊 *Diagrama del flujo*
 ```mermaid
 graph TD;
     Inicio[Inicio] --> Configuración[Configurar parámetros]
