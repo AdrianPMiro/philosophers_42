@@ -1,5 +1,6 @@
 # Philosophers  
-🏆 **42 Project**  
+
+### 🏆 **42 Project**  
 
 **Philosophers** es uno de los proyectos más interesantes en 42. Basado en el clásico problema de los *filósofos cenando*, este proyecto me permitio poner a prueba y mejorar mis habilidades en concurrencia y sincronización. A través de este proyecto, he implementado una simulación eficiente donde múltiples hilos representan filósofos que comparten recursos limitados de forma segura y sin errores.
 
@@ -118,7 +119,11 @@ Ejemplo:
 ## ✨ *Conclusión*  
 Trabajar en este proyecto fue un verdadero desafío, pero también una experiencia enriquecedora. Philosophers no solo me permitió profundizar en temas avanzados como concurrencia y sincronización, sino que también me enseñó la importancia de escribir código limpio y estructurado para manejar sistemas complejos.
 
+---
+
+   ```
  /\_/\  
 ( o.o )  ñam ñam
  > ^ <
 
+```
