@@ -124,6 +124,11 @@ Trabajar en este proyecto fue un verdadero desafío, pero también una experienc
    ```
  /\_/\  
 ( o.o )  ñam ñam
- > ^ <
+ > ^ <  
+
+         /\_/\  
+        ( -.- )  *vaya PLATÓN de espaguetis me voy a meter*
+         > ^ <
+
 
 ```
