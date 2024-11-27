@@ -17,13 +17,13 @@ El objetivo principal fue crear una simulación multihilo que modele cómo los f
 
 ## ❓ *¿En qué consiste el problema de los filósofos cenando?*
 
-El problema de los filósofos cenando es un problema clásico en ciencias de la computación, que ilustra los desafíos de la sincronización y la gestión de recursos compartidos en un entorno concurrente.  
+El problema de los filósofos cenando es un problema clásico en programacion, en el que te desafia en problemas como la sincronización y la gestión de recursos compartidos en un entorno concurrente.  
 
-Imagina a un grupo de filósofos sentados alrededor de una mesa circular. Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, cada filósofo necesita dos tenedores, pero solo hay un tenedor entre cada par de filósofos. Esto crea un problema:  
+Imagina a un grupo de filósofos sentados alrededor de una mesa circular en la que hay un gran e infinito bol de espaguetis 🍝. Cada filósofo alterna entre tres estados: comer, dormir y pensar. Para comer, cada filósofo necesita dos tenedores, pero a cada filosofo se le asigna un unico tenedor a su izquierda. Esto crea un problema:  
 1. Si todos los filósofos intentan tomar sus tenedores al mismo tiempo, puede ocurrir un *deadlock*, ya que nadie puede avanzar.  
-2. Si no hay una sincronización adecuada, algunos filósofos podrían quedarse hambrientos indefinidamente (condición de inanición).  
+2. Si no hay una sincronización adecuada, algunos filósofos podrían quedarse hambrientos indefinidamente (condición de inanición ☠️). 
 
-La solución a este problema implica diseñar estrategias de sincronización para garantizar que los filósofos puedan comer sin bloqueos ni inanición, incluso en un entorno con recursos limitados.  
+La solución a este problema implica diseñar estrategias de sincronización para garantizar que los filósofos puedan comer sin bloqueos ni inanición de la forma mas optima posible.
 
 ---
 
