@@ -112,12 +112,12 @@ Ejemplo:
 - <número_de_filósofos>: Cantidad de filósofos en la mesa.
 - <tiempo_para_morir>: Tiempo máximo (en ms) antes de que un filósofo muera de hambre.
 - <tiempo_para_comer>: Tiempo que tarda un filósofo en comer.
-- <tiempo_para_dormir>: Tiempo que un filósofo pasa durmiendo.
-- [número_de_comidas] (opcional): Número de comidas necesarias para que cada filósofo termine su participación.
+- <tiempo_para_dormir>: Tiempo que tarda un filósofo en dormir.
+- [número_de_comidas] (opcional): Número de comidas necesarias que un filósofo necesita comer.
 
 
 ## ✨ *Conclusión*  
-Trabajar en este proyecto fue un verdadero desafío, pero también una experiencia enriquecedora. Philosophers no solo me permitió profundizar en temas avanzados como concurrencia y sincronización, sino que también me enseñó la importancia de escribir código limpio y estructurado para manejar sistemas complejos.
+Trabajar en este ha sido una experiencia enriquecedora. Philosophers no solo me permitió profundizar en temas avanzados como concurrencia y sincronización, sino que también me enseñó la importancia de escribir código limpio y estructurado para manejar sistemas complejos. 
 
 ---
 
