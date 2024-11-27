@@ -66,6 +66,7 @@ graph TD;
     Comer --> ChequearMuerte[¿Murió algún filósofo?]
     ChequearMuerte -->|Sí| Fin[Terminar simulación]
     ChequearMuerte -->|No| Pensar
+```
 
 ## ✨ **Conclusión**
 El proyecto Philosophers no solo representa un ejercicio práctico para aplicar conceptos de concurrencia y sincronización, sino que también enseña estrategias esenciales para trabajar con sistemas multihilo. A través de este desafío, aprenderás a manejar recursos limitados y desarrollar soluciones escalables para problemas complejos.
