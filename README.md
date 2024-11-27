@@ -1,15 +1,16 @@
 # Philosophers  
 🏆 **42 Project**  
 
-**Philosophers** es uno de los proyectos más interesantes que he realizado en 42. Basado en el clásico problema de los *filósofos cenando*, este desafío me permitió poner a prueba y mejorar mis habilidades en concurrencia y sincronización. A través de este proyecto, he implementado una simulación eficiente donde múltiples hilos representan filósofos que comparten recursos limitados de forma segura y sin errores.
+**Philosophers** es uno de los proyectos más interesantes en 42. Basado en el clásico problema de los *filósofos cenando*, este proyecto me permitio poner a prueba y mejorar mis habilidades en concurrencia y sincronización. A través de este proyecto, he implementado una simulación eficiente donde múltiples hilos representan filósofos que comparten recursos limitados de forma segura y sin errores.
 
 ---
 
 ## 🎯 Objetivo del proyecto  
-El objetivo principal fue crear una simulación multihilo que modele cómo los filósofos alternan entre pensar, comer y dormir, todo mientras compiten por recursos limitados: los tenedores. Este proyecto me ayudó a comprender profundamente conceptos como:
+El objetivo principal fue crear una simulación multihilo que modele cómo los filósofos alternan entre pensar, comer y dormir, todo mientras compiten por recursos limitados: **los tenedores 🍴😨**. Este proyecto me ayudó a comprender profundamente conceptos como:
 - La sincronización entre procesos mediante mutexes.
 - La prevención de *deadlocks* y condiciones de carrera.
 - La gestión eficiente de múltiples hilos para lograr un programa robusto y escalable.
+- Mejorar mi estructuración modular, y escalable en proyectos complejos. 
 
 ---
 
@@ -31,18 +32,20 @@ Philosophers/
 ├── Makefile          # Herramienta de compilación
 └── README.md         # Este documento
 ```
+
 ## 📖 *Funcionamiento técnico*  
 Filosofía detrás del código  
-Cada filósofo alterna entre tres estados: pensar, comer y dormir. Para comer, necesita tomar dos tenedores, que están representados como mutexes.
+Cada filósofo alterna entre tres estados: comer, dormir y su defecto pensar.
+Para comer, necesita tomar dos tenedores, que están representados como mutexes.
 
 La simulación termina en dos casos:
-- Si un filósofo no logra comer antes de su tiempo límite, el filósofo muere y el programa finaliza.
+- Si un filósofo no logra comer antes de su tiempo límite, el filósofo muere por inanición y el programa finaliza de manera limpia.
 - Si todos los filósofos han comido el número especificado de veces (si se configuró).
 
 Sincronización  
 La clave para evitar problemas como deadlocks o condiciones de carrera fue sincronizar cuidadosamente los accesos a los tenedores usando mutexes. También me aseguré de implementar una lógica que prioriza la seguridad y la consistencia en la ejecución de cada hilo.
 
-##📊 *Diagrama del flujo*
+## 📊 *Diagrama del flujo*
 ```mermaid
 graph TD;
     Inicio[Inicio] --> Configuración[Configurar parámetros]
