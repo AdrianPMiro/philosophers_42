@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:40:02 by adrian            #+#    #+#             */
-/*   Updated: 2024/11/08 13:28:58 by adrian           ###   ########.fr       */
+/*   Updated: 2025/06/27 14:48:48 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,22 @@
 int	main(int ac, char **av)
 {
 	t_table	table;
+	int		status;
 
 	if (ac != 5 && ac != 6)
 		return (printf("Bad usage: %s\n", av[0]));
-	init_table(&table, ac, av);
-	start_table(&table);
+	status = init_table(&table, ac, av);
+	if (status)
+		return (status);
+	status = start_table(&table);
 	clean_table(&table);
-	return (0);
+	return (status);
 }
 
-void	init_av(t_table *table, int ac, char **av)
+int	init_av(t_table *table, int ac, char **av)
 {
-	if (av[1] == NULL || av[2] == NULL || av[3] == NULL || av[4] == NULL
-		|| (ac != 5 && ac != 6))
-		safe_exit(table, 1);
+	if (!av[1] || !av[2] || !av[3] || !av[4] || (ac != 5 && ac != 6))
+		return (safe_exit(table, 1));
 	table->n_philos = ft_atoi(av[1]);
 	table->td = ft_atoi(av[2]);
 	table->te = ft_atoi(av[3]);
@@ -38,17 +40,19 @@ void	init_av(t_table *table, int ac, char **av)
 	if (ac == 6)
 		table->min_meals = ft_atoi(av[5]);
 	if (table->n_philos < 1 || table->td <= 0 || table->te <= 0
-		||table->ts <= 0 || (ac == 6 && table->min_meals <= 0))
-		safe_exit(table, 1);
+		|| table->ts <= 0 || (ac == 6 && table->min_meals <= 0))
+		return (safe_exit(table, 1));
+	return (0);
 }
 
-void	init_table(t_table *table, int ac, char **av)
+int	init_table(t_table *table, int ac, char **av)
 {
-	init_av(table, ac, av);
+	if (init_av(table, ac, av))
+		return (1);
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->n_philos);
 	table->philo = malloc(sizeof(t_philo) * table->n_philos);
-	if (table->forks == NULL || table->philo == NULL)
-		safe_exit(table, -1);
+	if (!table->forks || !table->philo)
+		return (safe_exit(table, -1));
 	table->i = 0;
 	while (table->i < table->n_philos)
 		pthread_mutex_init(&table->forks[table->i++], NULL);
@@ -67,25 +71,27 @@ void	init_table(t_table *table, int ac, char **av)
 		table->philo[table->i].right_fork = (table->i + 1) % table->n_philos;
 		table->i++;
 	}
+	return (0);
 }
 
-void	start_table(t_table *table)
+int	start_table(t_table *table)
 {
 	table->i = 0;
 	while (table->i < table->n_philos)
 	{
 		if (pthread_create(&table->philo[table->i].thread,
-				NULL, &philo_routine, &table->philo[table->i]) != 0)
-			safe_exit(table, -1);
+				NULL, &philo_routine, &table->philo[table->i]))
+			return (safe_exit(table, -1));
 		table->i++;
 	}
 	table->i = 0;
 	while (table->i < table->n_philos)
 	{
-		if (pthread_join(table->philo[table->i].thread, NULL) != 0)
-			safe_exit(table, -1);
+		if (pthread_join(table->philo[table->i].thread, NULL))
+			return (safe_exit(table, -1));
 		table->i++;
 	}
+	return (0);
 }
 
 void	clean_table(t_table *table)
@@ -95,8 +101,8 @@ void	clean_table(t_table *table)
 		pthread_mutex_destroy(&table->forks[table->i++]);
 	pthread_mutex_destroy(&table->print_locks);
 	pthread_mutex_destroy(&table->check_mutex);
-	if (table->forks != NULL)
+	if (table->forks)
 		free(table->forks);
-	if (table->philo != NULL)
+	if (table->philo)
 		free(table->philo);
 }

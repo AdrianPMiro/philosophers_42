@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:39:57 by adrian            #+#    #+#             */
-/*   Updated: 2024/11/08 13:35:24 by adrian           ###   ########.fr       */
+/*   Updated: 2025/04/23 14:06:42 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ typedef struct s_table
 	pthread_mutex_t	print_locks;
 	pthread_mutex_t	check_mutex;
 	t_philo			*philo;
-}	t_table;
+	//int			program_should_exit;
+} t_table;
 
 //main 
-void	init_table(t_table *table, int ac, char **av);
-void	start_table(t_table *table);
+int		init_table(t_table *table, int ac, char **av);
+int		start_table(t_table *table);
+int		init_av(t_table *table, int ac, char **av);
 void	clean_table(t_table *table);
 
 //rutine
@@ -67,8 +69,7 @@ int		check_end(t_philo *philo);
 long	get_current_time(void);
 void	ft_sleep(long time_in_ms);
 void	print_status(t_philo *philo, char *status);
-void	safe_exit(t_table *table, int status);
-void	init_av(t_table *table, int ac, char **av);
+int		safe_exit(t_table *table, int status);
 
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *nptr);
