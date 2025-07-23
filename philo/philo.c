@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:40:02 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/23 16:50:11 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:54:48 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_av(t_table *table, int ac, char **av)
 	table->someone_died = 0;
 	if (ac == 6)
 		table->min_meals = ft_atoi(av[5]);
-	if (table->n_philos < 1 || table->td <= 0 || table->te <= 0
+	if (table->n_philos <= 0 || table->td <= 0 || table->te <= 0
 		|| table->ts <= 0 || (ac == 6 && table->min_meals <= 0))
 		return (safe_exit(table, 1));
 	return (0);
