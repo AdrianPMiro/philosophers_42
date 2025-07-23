@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:39:57 by adrian            #+#    #+#             */
-/*   Updated: 2025/04/23 14:06:42 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:41:06 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_table
 	pthread_mutex_t	check_mutex;
 	t_philo			*philo;
 	//int			program_should_exit;
-} t_table;
+}	t_table;
 
 //main 
 int		init_table(t_table *table, int ac, char **av);

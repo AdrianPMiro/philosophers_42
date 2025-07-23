@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:36:42 by adrian            #+#    #+#             */
-/*   Updated: 2025/06/28 16:27:27 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:41:24 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	print_status(t_philo *philo, char *status)
 	pthread_mutex_lock(&philo->table->check_mutex);
 	if (!philo->table->someone_died)
 	{
-			timestamp = get_current_time() - philo->table->start_time;
-			printf("%ld %d %s\n", timestamp, philo->id, status);
-			if (ft_strcmp(status, "died") == 0
-					|| ft_strcmp(status, YUMMY) == 0)
-					philo->table->someone_died = 1;
+		timestamp = get_current_time() - philo->table->start_time;
+		printf("%ld %d %s\n", timestamp, philo->id, status);
+		if (ft_strcmp(status, "died") == 0
+			|| ft_strcmp(status, YUMMY) == 0)
+			philo->table->someone_died = 1;
 	}
 	pthread_mutex_unlock(&philo->table->check_mutex);
 	pthread_mutex_unlock(&philo->table->print_locks);
@@ -82,12 +82,12 @@ int	check_end(t_philo *philo)
 		index++;
 	}
 	if (philo->table->all_finish && philo->table->min_meals != -1)
-        {
-                pthread_mutex_unlock(&philo->table->check_mutex);
-                print_status(philo, YUMMY);
-                return (1);
-        }
-        index = philo->table->someone_died;
-        pthread_mutex_unlock(&philo->table->check_mutex);
-        return (index);
+	{
+		pthread_mutex_unlock(&philo->table->check_mutex);
+		print_status(philo, YUMMY);
+		return (1);
+	}
+	index = philo->table->someone_died;
+	pthread_mutex_unlock(&philo->table->check_mutex);
+	return (index);
 }
