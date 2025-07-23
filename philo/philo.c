@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:40:02 by adrian            #+#    #+#             */
-/*   Updated: 2025/06/27 14:48:48 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:50:11 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int ac, char **av)
 
 int	init_av(t_table *table, int ac, char **av)
 {
+	table->forks = NULL;
+	table->philo = NULL;
 	if (!av[1] || !av[2] || !av[3] || !av[4] || (ac != 5 && ac != 6))
 		return (safe_exit(table, 1));
 	table->n_philos = ft_atoi(av[1]);
@@ -97,7 +99,7 @@ int	start_table(t_table *table)
 void	clean_table(t_table *table)
 {
 	table->i = 0;
-	while (table->i < table->n_philos)
+	while (table->i < table->n_philos && table->forks)
 		pthread_mutex_destroy(&table->forks[table->i++]);
 	pthread_mutex_destroy(&table->print_locks);
 	pthread_mutex_destroy(&table->check_mutex);
