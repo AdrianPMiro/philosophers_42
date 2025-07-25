@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:40:02 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/23 16:54:48 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/23 17:13:48 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	init_table(t_table *table, int ac, char **av)
 	if (!table->forks || !table->philo)
 		return (safe_exit(table, -1));
 	table->i = 0;
-	while (table->i < table->n_philos)
-		pthread_mutex_init(&table->forks[table->i++], NULL);
 	pthread_mutex_init(&table->print_locks, NULL);
 	pthread_mutex_init(&table->check_mutex, NULL);
+	while (table->i < table->n_philos)
+		pthread_mutex_init(&table->forks[table->i++], NULL);
 	table->start_time = get_current_time();
 	table->i = 0;
 	while (table->i < table->n_philos)
@@ -99,7 +99,7 @@ int	start_table(t_table *table)
 void	clean_table(t_table *table)
 {
 	table->i = 0;
-	while (table->i < table->n_philos && table->forks)
+	while (table->i < table->n_philos)
 		pthread_mutex_destroy(&table->forks[table->i++]);
 	pthread_mutex_destroy(&table->print_locks);
 	pthread_mutex_destroy(&table->check_mutex);

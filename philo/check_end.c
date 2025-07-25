@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:36:42 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/23 16:41:24 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 14:24:46 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,27 @@
 
 #define YUMMY "All philosophers have eaten enough ñam ñam"
 
-void	ft_sleep(long time_in_ms)
+int	sleep_or_die(t_philo *philo, long action_time)
 {
-	long	start_time;
+	long	now;
+	long	time_left;
 
-	start_time = get_current_time();
-	while ((get_current_time() - start_time) < time_in_ms)
-		usleep(100);
+	pthread_mutex_lock(&philo->table->check_mutex);
+	now = get_current_time();
+	time_left = philo->table->td - (now - philo->time_since_eat);
+	pthread_mutex_unlock(&philo->table->check_mutex);
+	if (time_left <= 0)
+	{
+		print_status(philo, "died");
+		return (1);
+	}
+	if (time_left < action_time)
+	{
+		ft_sleep(time_left);
+		print_status(philo, "died");
+		return (1);
+	}
+	return (0);
 }
 
 void	print_status(t_philo *philo, char *status)

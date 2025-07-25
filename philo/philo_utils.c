@@ -6,11 +6,20 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:30:16 by adrian            #+#    #+#             */
-/*   Updated: 2025/04/23 16:00:02 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 14:24:33 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_sleep(long time_in_ms)
+{
+	long	start_time;
+
+	start_time = get_current_time();
+	while ((get_current_time() - start_time) < time_in_ms)
+		usleep(100);
+}
 
 int	ft_atoi(const char *nptr)
 {
@@ -53,20 +62,11 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 int	safe_exit(t_table *table, int status)
 {
-	int	i;
-
-	i = 0;
 	printf("Error\n");
 	if (table)
 	{
 		if (table->forks)
-		{
-			while (i < table->n_philos)
-				pthread_mutex_destroy(&table->forks[i++]);
 			free(table->forks);
-		}
-		pthread_mutex_destroy(&table->print_locks);
-		pthread_mutex_destroy(&table->check_mutex);
 		if (table->philo)
 			free(table->philo);
 	}

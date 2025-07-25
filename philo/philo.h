@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:39:57 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/23 16:41:06 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 14:25:43 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ long	get_current_time(void);
 void	ft_sleep(long time_in_ms);
 void	print_status(t_philo *philo, char *status);
 int		safe_exit(t_table *table, int status);
-
+int		sleep_or_die(t_philo *philo, long action_time);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *nptr);
 #endif
