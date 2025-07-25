@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:39:57 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 14:25:43 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:29:13 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	rest(t_philo *philo);
 //utils
 int		check_end(t_philo *philo);
 long	get_current_time(void);
-void	ft_sleep(long time_in_ms);
+void	ft_sleep(t_philo *philo, long time_in_ms);
 void	print_status(t_philo *philo, char *status);
 int		safe_exit(t_table *table, int status);
 int		sleep_or_die(t_philo *philo, long action_time);

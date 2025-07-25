@@ -6,19 +6,28 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:30:16 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 14:24:33 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:33:22 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_sleep(long time_in_ms)
+void	ft_sleep(t_philo *philo, long time_in_ms)
 {
 	long	start_time;
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < time_in_ms)
-		usleep(100);
+	{
+			pthread_mutex_lock(&philo->table->check_mutex);
+			if (philo->table->someone_died)
+			{
+					pthread_mutex_unlock(&philo->table->check_mutex);
+					break ;
+			}
+			pthread_mutex_unlock(&philo->table->check_mutex);
+			usleep(100);
+	}
 }
 
 int	ft_atoi(const char *nptr)

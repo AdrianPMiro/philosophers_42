@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:00:09 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 17:38:32 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:30:48 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		ft_sleep(10);
+		ft_sleep(philo, 10);
 	if (philo->table->n_philos == 1)
 	{
 		lock_forks(philo);
@@ -44,8 +44,8 @@ void	lock_forks(t_philo *philo)
 	if (philo->table->n_philos == 1)
 	{
 		pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
-		print_status(philo, "not enought forks");
-		ft_sleep(philo->table->td);
+		print_status(philo, "has taken a fork");
+		ft_sleep(philo, philo->table->td);
 		pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
 	}
 	else
@@ -53,15 +53,17 @@ void	lock_forks(t_philo *philo)
 		if (philo->id % 2 == 0)
 		{
 			pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
+			print_status(philo, "has taken a fork");
 			pthread_mutex_lock(&philo->table->forks[philo->right_fork]);
+			print_status(philo, "has taken a fork");
 		}
 		else
 		{
 			pthread_mutex_lock(&philo->table->forks[philo->right_fork]);
+			print_status(philo, "has taken a fork");
 			pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
+			print_status(philo, "has taken a fork");
 		}
-		print_status(philo, "has taken right fork");
-		print_status(philo, "has taken left fork");
 	}
 }
 
@@ -74,7 +76,7 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->table->check_mutex);
 	if (sleep_or_die(philo, philo->table->te))
 		return ;
-	ft_sleep(philo->table->te);
+	ft_sleep(philo, philo->table->te);
 }
 
 void	release_forks(t_philo *philo)
@@ -88,6 +90,6 @@ void	rest(t_philo *philo)
 	print_status(philo, "is sleeping");
 	if (sleep_or_die(philo, philo->table->ts))
 		return ;
-	ft_sleep(philo->table->ts);
+	ft_sleep(philo, philo->table->ts);
 	print_status(philo, "is thinking");
 }
