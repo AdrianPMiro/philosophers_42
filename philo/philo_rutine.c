@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:00:09 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 14:26:19 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 17:38:32 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,20 @@ void	lock_forks(t_philo *philo)
 			pthread_mutex_lock(&philo->table->forks[philo->right_fork]);
 			pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
 		}
-		print_status(philo, "has taken a fork");
+		print_status(philo, "has taken right fork");
+		print_status(philo, "has taken left fork");
 	}
 }
 
 void	eat(t_philo *philo)
 {
 	print_status(philo, "is eating");
-	if (sleep_or_die(philo, philo->table->te))
-		return ;
 	pthread_mutex_lock(&philo->table->check_mutex);
 	philo->time_since_eat = get_current_time();
 	philo->meals_count++;
 	pthread_mutex_unlock(&philo->table->check_mutex);
+	if (sleep_or_die(philo, philo->table->te))
+		return ;
 	ft_sleep(philo->table->te);
 }
 
