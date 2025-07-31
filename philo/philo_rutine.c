@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:00:09 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/31 15:12:19 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/31 16:42:56 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	*philo_routine(void *arg)
 	}
 	return (NULL);
 }
+
 void	lock_forks(t_philo *philo)
 {
 	if (philo->table->n_philos == 1)
@@ -75,8 +76,6 @@ void	rest(t_philo *philo)
 		ft_sleep(philo, philo->table->te);
 }
 
-
-
 void	release_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
@@ -94,14 +93,3 @@ void	eat(t_philo *philo)
 		return ;
 	ft_sleep(philo, philo->table->te);
 }
-
-/*
-void	rest(t_philo *philo)
-{
-	if (sleep_or_die(philo, philo->table->ts))
-		return ;
-	print_status(philo, "is sleeping");
-	ft_sleep(philo, philo->table->ts);
-	print_status(philo, "is thinking");
-}
-*/
