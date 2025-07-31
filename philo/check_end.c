@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:36:42 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 18:37:01 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:40:46 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	sleep_or_die(t_philo *philo, long action_time)
 	}
 	if (time_left < action_time)
 	{
-		ft_sleep(philo,time_left);
+		ft_sleep(philo, time_left);
 		print_status(philo, "died");
 		return (1);
 	}
@@ -65,7 +65,8 @@ long	get_current_time(void)
 
 int	check_philosopher(t_philo *current_philo, t_philo *philo)
 {
-	if ((get_current_time() - current_philo->time_since_eat) >= philo->table->td)
+	if ((get_current_time() - current_philo->time_since_eat)
+		>= philo->table->td)
 	{
 		pthread_mutex_unlock(&philo->table->check_mutex);
 		print_status(current_philo, "died");

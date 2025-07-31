@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:30:16 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 18:33:22 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/25 18:41:03 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	ft_sleep(t_philo *philo, long time_in_ms)
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < time_in_ms)
 	{
-			pthread_mutex_lock(&philo->table->check_mutex);
-			if (philo->table->someone_died)
-			{
-					pthread_mutex_unlock(&philo->table->check_mutex);
-					break ;
-			}
+		pthread_mutex_lock(&philo->table->check_mutex);
+		if (philo->table->someone_died)
+		{
 			pthread_mutex_unlock(&philo->table->check_mutex);
-			usleep(100);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->table->check_mutex);
+		usleep(100);
 	}
 }
 
