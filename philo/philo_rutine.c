@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:00:09 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/31 14:53:11 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/31 15:12:19 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ void	release_forks(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->table->check_mutex);
 	philo->time_since_eat = get_current_time();
+	pthread_mutex_lock(&philo->table->check_mutex);
 	philo->meals_count++;
 	pthread_mutex_unlock(&philo->table->check_mutex);
+	print_status(philo, "is eating");
 	if (sleep_or_die(philo, philo->table->te))
 		return ;
-	print_status(philo, "is eating");
 	ft_sleep(philo, philo->table->te);
 }
 

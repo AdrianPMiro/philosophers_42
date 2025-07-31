@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 21:36:42 by adrian            #+#    #+#             */
-/*   Updated: 2025/07/25 18:40:46 by adrian           ###   ########.fr       */
+/*   Updated: 2025/07/31 15:31:01 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,14 @@ void	print_status(t_philo *philo, char *status)
 	pthread_mutex_lock(&philo->table->check_mutex);
 	if (!philo->table->someone_died)
 	{
-		timestamp = get_current_time() - philo->table->start_time;
+		if (ft_strcmp(status, "died") == 0)
+		{
+			/* Momento exacto de la muerte = última comida + time_to_die */
+			timestamp = philo->time_since_eat + philo->table->td
+				- philo->table->start_time;
+		}
+		else
+			timestamp = get_current_time() - philo->table->start_time;
 		printf("%ld %d %s\n", timestamp, philo->id, status);
 		if (ft_strcmp(status, "died") == 0
 			|| ft_strcmp(status, YUMMY) == 0)
@@ -54,6 +61,7 @@ void	print_status(t_philo *philo, char *status)
 	pthread_mutex_unlock(&philo->table->check_mutex);
 	pthread_mutex_unlock(&philo->table->print_locks);
 }
+
 
 long	get_current_time(void)
 {
